@@ -194,8 +194,6 @@ class EntriesExport
             $book->addChapter($entry->getTitle(), htmlspecialchars($filename) . '.html', $chapter, true, EPub::EXTERNAL_REF_ADD);
         }
 
-        $book->buildTOC();
-
         return Response::create(
             $book->getBook(),
             200,
