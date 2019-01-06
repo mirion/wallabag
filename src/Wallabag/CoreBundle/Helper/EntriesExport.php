@@ -85,7 +85,7 @@ class EntriesExport
     public function updateAuthor($method)
     {
         if ('entry' !== $method) {
-            $this->author = $method . ' authors';
+            $this->author = 'Various authors';
 
             return $this;
         }
@@ -174,7 +174,7 @@ class EntriesExport
             $book->setCoverImage('Cover.png', file_get_contents($this->logoPath), 'image/png');
         }
 
-        $entryCount = count($this->entries);
+        $entryCount = \count($this->entries);
         $i = 0;
 
         /*
