@@ -189,11 +189,13 @@ class EntriesExport
             }
             $filename = sha1($entry->getTitle());
 
-            $titlepage = $content_start . '<h1>' . $entry->getTitle() . '</h1>' . $this->getExportInformation('PHPePub') . $bookEnd;
+            $titlepage = $content_start . '<h1>' . $entry->getTitle() . '</h1>' . $bookEnd;
             $book->addChapter("Entry {$i} of {$entryCount}", "{$filename}_cover.html", $titlepage, true, EPub::EXTERNAL_REF_ADD);
             $chapter = $content_start . $entry->getContent() . $bookEnd;
             $book->addChapter($entry->getTitle(), "{$filename}.html", $chapter, true, EPub::EXTERNAL_REF_ADD);
         }
+
+        $book->addChapter('Notices', 'Cover2.html', $content_start . $this->getExportInformation('PHPePub') . $bookEnd);
 
         return Response::create(
             $book->getBook(),
